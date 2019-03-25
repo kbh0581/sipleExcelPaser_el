@@ -31,14 +31,15 @@ const excelWorkseetParser = (workseet) =>{
     }
     //console.log(tempArray);
     let map = tempArray.map(s=>JSON.parse(workseet[s].w).data);
-    
-    
+    //let x2 = xlsx.utils.json_to_sheet(map);
     map=arrayJsonMerge(map);
+    
     const key= Object.keys(map[0]); //header 값
     const values = map;             //value 값
     return {'header':key,'list':values};
 
 }
+const json_to_excel = (json) => xlsx.utils.json_to_sheet(json); 
 
 
 

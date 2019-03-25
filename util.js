@@ -17,7 +17,7 @@ const tableAdder = (id,object) => {
         tableDoc.appendChild(tr);
         for(let i=0; i< headerKey.length;i++){
             let td = document.createElement('td');
-            list[j][headerKey[i]]);
+            //list[j][headerKey[i]]);
             tr.appendChild(td);
         }
     }
