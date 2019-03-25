@@ -6,7 +6,7 @@ let win
 
 function createWindow () {
   // 브라우저 창을 생성합니다.
-  win = new BrowserWindow({ width: 800, height: 600 })
+  win = new BrowserWindow({ width: 800, height: 600 , icon : "./res/imgIcon/mainIcon.png" })
 
   // 앱의 index.html 파일을 로드합니다.
   win.loadFile('index.html')

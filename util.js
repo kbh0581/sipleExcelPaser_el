@@ -1,6 +1,13 @@
 const tableAdder = (id,object) => {
 
-    const tableDoc= document.getElementById(id);
+    const initTableSpot= document.getElementById(id);
+    if(document.getElementById('table') !== null && document.getElementById('table') !== undefined) {
+        initTableSpot.removeChild(document.getElementById("table"));
+    }
+    
+    const tableDoc= document.createElement('table');
+    
+    tableDoc.setAttribute("id","table");
     const headerKey=object.header;
     const list=object.list;
     tableDoc.setAttribute('border','1');
@@ -17,10 +24,12 @@ const tableAdder = (id,object) => {
         tableDoc.appendChild(tr);
         for(let i=0; i< headerKey.length;i++){
             let td = document.createElement('td');
-            list[j][headerKey[i]]);
+            let text =  document.createTextNode(list[j][headerKey[i]]);
+            td.appendChild(text);
             tr.appendChild(td);
         }
     }
+    initTableSpot.appendChild(tableDoc);
 
     
 };
