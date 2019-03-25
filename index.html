@@ -7,7 +7,12 @@
   </head>
   <body>
     파일:<input type="file" name="fileExcel" id="fileExcel" >  
+<<<<<<< HEAD
     <button id="submit" onclick="excelTableExport()">버튼</button>
+=======
+    <button id="submit" onclick="excelImport()">버튼</button>
+    <button id="excelExport" onclick="excelExport()">Excel 다운로드</button>
+>>>>>>> b467a7862e75ae465c8e6fdb89dfa2263f27ee82
 
     <div id ="initTableSpot">
       
@@ -25,8 +30,10 @@
   
 </html>
 <script>
+
   const excelParser = require('./excelParser');
   const utils = require('./util');
+  let jsonData ='';
   
   const excelTableExport = () =>{
      
@@ -41,9 +48,14 @@
         alert(parserResult.msg);
         }else{
           var obj = excelParser.excelWorkseetParser(parserResult);
-        utils.tableAdder('initTableSpot',obj);
+           utils.tableAdder('initTableSpot',obj);
+          jsonData=parserResult;
       }
     };
+    const excelExport = () =>{
+              jsonData
+
+          };
 
     
 

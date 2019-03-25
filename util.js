@@ -26,6 +26,7 @@ const tableAdder = (id,object) => {
             let td = document.createElement('td');
             let text =  document.createTextNode(list[j][headerKey[i]]);
             td.appendChild(text);
+
             tr.appendChild(td);
         }
     }
