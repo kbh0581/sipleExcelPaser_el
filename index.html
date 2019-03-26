@@ -6,15 +6,20 @@
 
   </head>
   <body>
-    파일:<input type="file" name="fileExcel" id="fileExcel" >  
-    <button id="submit" onclick="excelTableExport()">버튼</button>
-    <button id="excelExport" onclick="excelExport()">Excel 다운로드</button>
-
-    
+    <header> 
+     파일:<input type="file" name="fileExcel" id="fileExcel" >  
+      <button id="submit" onclick="excelTableExport()" >출력</button> 
+      <button id="excelExport" onclick="excelExport()" style="display: none;" >Excel 다운로드</button>
+    </header>
 
     <div id ="initTableSpot">
       
     </div>
+ 
+
+    <div id ='fakeUrl'>
+    <div>
+
    
         <script>
         // You can also require other files to run in this process
@@ -31,7 +36,9 @@
 
   const excelParser = require('./excelParser');
   const utils = require('./util');
-  let jsonData ='';
+  
+
+  let jsonData = new Object;
   
   const excelTableExport = () =>{
      
@@ -44,15 +51,34 @@
       let parserResult=excelParser.excelRead(filepath);
       if(parserResult.flag === false){
         alert(parserResult.msg);
-        }else{
+        jsonData='';
+        buttonDisable();
+      }else{
           var obj = excelParser.excelWorkseetParser(parserResult);
            utils.tableAdder('initTableSpot',obj);
-          jsonData=parserResult;
+           jsonData=obj.list;
+           buttonDisable();
       }
     };
     const excelExport = () =>{
-              jsonData
+        excelParser.exceltoJsonExport(jsonData);
+        //가짜 URL 생성
+        let target=document.getElementById('fakeUrl');
+        let a = document.createElement('a');
+        a.setAttribute('href','./test.xlsx');
+        a.setAttribute('download','parser.xlsx');
+        a.setAttribute('id','temp');
+        target.appendChild(a);
+        a.click();
+        target.removeChild(document.getElementById('temp'));
+    };
 
+    const buttonDisable = () =>{
+      if(jsonData !==null && jsonData !=='' && jsonData !== undefined){
+        document.getElementById("excelExport").style.display='inline';
+      }else{
+        document.getElementById("excelExport").style.display='none';
+      }
     };
 
     
