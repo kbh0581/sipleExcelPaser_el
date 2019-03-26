@@ -72,7 +72,7 @@
       "allowToChangeInstallationDirectory": true
     },
     "directories": {
-      "buildResources": "resources/installer/",
+      "buildResources": "res/",
       "output": "dist/",
       "app": "."
     }
